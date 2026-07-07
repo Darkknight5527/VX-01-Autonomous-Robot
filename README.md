@@ -15,7 +15,7 @@ A modular multi-terrain robotic platform combining the agility of a hexapod craw
 - **Hybrid Mode Management:** Safe state machine transitioning the robot from ground crawling to aerodynamic flight postures.
 - **Visual SLAM & Odometry:** RTAB-Map integration using depth camera data for 3D point cloud generation and obstacle avoidance.
 - **Computer Vision:** Real-time object detection, victim identification, and terrain walkability classification using YOLOv4-tiny.
-- **Mission Control Dashboard:** A sleek, React-based web UI communicating over `rosbridge_server` for live telemetry, manual teleop, and mapping visualization.
+- **Mission Control Dashboard:** A sleek, React-based web UI communicating over `rosbridge_server` for live telemetry, manual teleoperation, and mapping visualization.
 
 ---
 
