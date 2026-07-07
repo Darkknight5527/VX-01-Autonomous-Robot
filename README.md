@@ -116,19 +116,13 @@ Pull requests are welcome. When adding new ROS 2 nodes, ensure they are properly
 
 ## 👥 Team & Contributions
 
-**VX-01 was developed as a B.Tech Final Year Project at Mar Athanasius College of Engineering, 2026, by a two-person core team.**
+**VX-01 was developed as a B.Tech Final Year Project at Mar Athanasius College of Engineering, 2026, by a four-person core team.**
 
-### Akhil Sebastian — Co-Lead (Hardware & Systems)
+### My Contributions(Hardware & Systems)
 - **Hardware Assembly & Integration:** Led end-to-end physical assembly of the hybrid hexapod-drone platform, integrating all compute boards, flight controllers, servo controllers, sensors, and power systems into a unified chassis
 - **PCB Design:** Designed custom PCBs for power distribution and sensor interfacing, ensuring reliable signal integrity across the embedded hardware stack
 - **Drone Flight Systems:** Configured and tuned the ArduPilot-based flight controller (Radiolink PIX6) for stable STABILIZE, GUIDED, and AUTO flight modes; handled ESC calibration, motor mapping, and pre-flight validation
 - **3D Printing & Manufacturing:** Designed and 3D printed the robot chassis, leg mounts, and structural components using SolidWorks; iterated on manufacturing to meet weight and strength requirements for both ground and aerial operation
-
-### Gourishankar — Co-Lead (Software & Architecture)
-- ROS2 software architecture and package development
-- Docker containerization and deployment pipeline
-- Visual SLAM, computer vision (YOLOv4-tiny), and web dashboard
-
 ---
 
 *B.Tech Final Year Project | Electrical & Electronics Engineering | Mar Athanasius College of Engineering | June 2026*
