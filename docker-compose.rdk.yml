@@ -1,0 +1,76 @@
+name: vx01-rdk
+
+services:
+
+  vx01-robot:
+    image: ${DOCKER_REGISTRY}/vx01-base:humble-arm64
+    container_name: vx01-robot
+    network_mode: host
+    privileged: true
+    ipc: host
+    restart: unless-stopped
+    environment:
+      - ROS_DOMAIN_ID=0
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - LD_LIBRARY_PATH=/opt/ros/humble/lib:/vx01_ws/src/vx01_camera/libs/lib/aarch64-linux-gnu
+    volumes:
+      - /dev:/dev
+      - ./vx01_ws:/vx01_ws
+      - vx01_logs:/vx01_ws/log
+      - /home/pi/.ssh:/root/.ssh:ro
+      - /home/pi/.gitconfig:/root/.gitconfig:ro
+    devices:
+      - /dev/ttyPIXHAWK:/dev/ttyPIXHAWK
+      - /dev/ttyMAESTRO:/dev/ttyMAESTRO
+      - /dev/ttyTFMINI:/dev/ttyTFMINI
+      - /dev/ttyIMU:/dev/ttyIMU
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1
+    command: tail -f /dev/null
+
+  vx01-mavros:
+    image: ${DOCKER_REGISTRY}/vx01-base:humble-arm64
+    container_name: vx01-mavros
+    network_mode: host
+    privileged: true
+    ipc: host
+    restart: unless-stopped
+    environment:
+      - ROS_DOMAIN_ID=0
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    devices:
+      - /dev/ttyPIXHAWK:/dev/ttyPIXHAWK
+    command: tail -f /dev/null
+
+  vx01-rosbridge:
+    image: ${DOCKER_REGISTRY}/vx01-base:humble-arm64
+    container_name: vx01-rosbridge
+    network_mode: host
+    ipc: host
+    restart: unless-stopped
+    environment:
+      - ROS_DOMAIN_ID=0
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    command: >
+      bash -c "source /opt/ros/humble/setup.bash &&
+               ros2 launch rosbridge_server rosbridge_websocket_launch.xml port:=9090"
+
+  vx01-dashboard:
+    image: ${DOCKER_REGISTRY}/vx01-dashboard:latest
+    container_name: vx01-dashboard
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+
+  vx01-dashboard-backend:
+    image: ${DOCKER_REGISTRY}/vx01-dashboard-backend:latest
+    container_name: vx01-dashboard-backend
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3001:3001"
+
+volumes:
+  vx01_logs:
