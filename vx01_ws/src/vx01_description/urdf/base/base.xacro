@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="base_footprint"/>
+
+    <joint name="base_footprint_to_base_link" type="fixed">
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <parent
+            link="base_footprint" />
+        <child
+            link="base_link" />
+    </joint>
+
+    <link name="base_link">
+        <inertial>
+            <origin
+                xyz="-0.0074796 0.000198 0.065361"
+                rpy="0 0 0" />
+            <mass
+                value="6.0" />
+            <inertia
+                ixx="0.15"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.15"
+                iyz="0.0"
+                izz="0.20" />
+        </inertial>
+
+        <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="package://vx01_description/meshes/base/base_link.STL" />
+            </geometry>
+            <material
+                name="">
+                <color
+                    rgba="0.25098 0.25098 0.25098 1" />
+            </material>
+        </visual>
+
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="package://vx01_description/meshes/base/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+</robot>

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;700;900&display=swap');
+
+:root {
+  --bg-dark: #030712;
+  --glass: rgba(17, 24, 39, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-blue: #2563eb;
+  --accent-emerald: #059669;
+  --accent-rose: #dc2626;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  font-family: var(--font-main);
+  color: #f3f4f6;
+  overflow: hidden;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.glass-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  transition: all 0.15s ease;
+}
+
+.glass-card:hover {
+  background: #334155;
+  border-color: var(--accent-blue);
+}
+
+.active-blue { border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(37, 99, 235, 0.2); }
+.active-indigo { border-color: #6366f1; box-shadow: 0 0 10px rgba(99, 102, 241, 0.2); }
+.active-red { border-color: var(--accent-rose); box-shadow: 0 0 10px rgba(220, 38, 38, 0.2); }
+
+/* Typography Overrides */
+.font-black { font-weight: 800; }
+.tracking-tighter { letter-spacing: -0.02em; }

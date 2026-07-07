@@ -1,0 +1,58 @@
+FROM vx01-base:humble
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN curl -sSL https://packages.osrfoundation.org/gazebo.gpg \
+        -o /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] \
+        http://packages.osrfoundation.org/gazebo/ubuntu-stable jammy main" \
+        > /etc/apt/sources.list.d/gazebo-stable.list
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ignition-fortress \
+    ros-humble-ros-ign-bridge \
+    ros-humble-ros-ign-gazebo \
+    ros-humble-ros-ign-interfaces \
+    ros-humble-ign-ros2-control \
+    ros-humble-rviz2 \
+    ros-humble-rviz-common \
+    ros-humble-rviz-default-plugins \
+    ros-humble-rtabmap-ros \
+    ros-humble-rtabmap-launch \
+    ros-humble-web-video-server \
+    ros-humble-robot-localization \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    x11-apps \
+    mesa-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# ArduPilot SITL setup
+ENV USER=root
+RUN apt-get update && apt-get install -y sudo tzdata && \
+    git clone https://github.com/ArduPilot/ardupilot.git /ardupilot && \
+    cd /ardupilot && \
+    git checkout Copter-4.5 && \
+    git submodule update --init --recursive && \
+    sed -i 's/EUID/SKIP_EUID/g' Tools/environment_install/install-prereqs-ubuntu.sh && \
+    Tools/environment_install/install-prereqs-ubuntu.sh -y || true && \
+    pip3 install future pexpect setuptools empy==3.3.4 pymavlink Mako MAVProxy --no-cache-dir && \
+    ln -sf /root/.local/bin/mavproxy.py /usr/local/bin/mavproxy.py && \
+    ./waf configure --board sitl && \
+    ./waf copter -j 2
+
+# ArduPilot Gazebo Plugin for Ignition Fortress
+RUN apt-get update && apt-get install -y libignition-gazebo6-dev libignition-cmake2-dev rapidjson-dev && \
+    git clone -b fortress https://github.com/ArduPilot/ardupilot_gazebo.git /ardupilot_gazebo && \
+    cd /ardupilot_gazebo && \
+    mkdir build && cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+    make -j 2 && \
+    cp libArduPilotPlugin.so /usr/local/lib/ && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV IGN_GAZEBO_SYSTEM_PLUGIN_PATH=/usr/local/lib
+ENV QT_X11_NO_MITSHM=1
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]

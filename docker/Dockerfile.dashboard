@@ -1,0 +1,15 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+COPY vx01_dashboard/frontend/package*.json ./
+
+RUN npm ci
+
+COPY vx01_dashboard/frontend/ ./
+
+RUN npm run build
+
+EXPOSE 5173
+
+CMD ["npx", "vite", "preview", "--port", "5173", "--host", "0.0.0.0"]

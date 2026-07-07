@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>vx01_mapping</name>
+  <version>1.0.0</version>
+  <description>VX-01 mapping package using RTAB-Map SLAM</description>
+  <maintainer email="sskzm5585@gmail.com">Gouri Shankar</maintainer>
+  <license>MIT</license>
+
+  <exec_depend>rtabmap_ros</exec_depend>
+  <exec_depend>rtabmap_slam</exec_depend>
+  <exec_depend>rtabmap_viz</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

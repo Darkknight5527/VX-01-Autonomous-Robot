@@ -1,0 +1,35 @@
+mavros:
+  ros__parameters:
+    # Hardware Connection (RDK X5 to PIX6 via USB)
+    fcu_url: "serial:///dev/ttyPIXHAWK:115200"
+    # No GCS Bridge needed since the Dashboard uses ROS Topics (rosbridge)
+    gcs_url: ""
+
+    # MAVLink system IDs
+    target_system_id: 1
+    target_component_id: 1
+    system_id: 255
+    component_id: 240
+    fcu_protocol: "v2.0"
+
+    # Frame
+    frame_id: "map"
+    local_position_frame_id: "base_link"
+    
+    # Heartbeat
+    heartbeat_rate: 1.0
+    heartbeat_mav_type: 2
+
+    # Timeouts
+    conn_timeout: 30.0
+
+    # Dummy Distance Sensor Mapping to silence the MAVROS DS warning
+    distance_sensor:
+      rangefinder_sub:
+        subscriber: false
+        id: 0
+        orientation: 25
+        frame_id: "tf_mini_link"
+
+    # Note: ArduPilot parameters should be set in Mission Planner
+    # FRAME_CLASS = 1, FRAME_TYPE = 1, SYSID_MYGCS = 255, SERIAL0_BAUD = 115, SERIAL0_PROTOCOL = 2

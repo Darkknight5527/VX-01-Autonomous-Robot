@@ -1,0 +1,134 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50          # 50 Hz
+    use_sim_time: false
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    leg_0_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    leg_1_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    leg_2_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    leg_3_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    leg_4_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    leg_5_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+leg_0_controller:
+  ros__parameters:
+
+    use_sim_time: false
+
+    joints: 
+      - coxa_leg0_joint 
+      - femur_leg0_joint 
+      - tibia_leg0_joint
+
+    command_interfaces: 
+      - position
+    state_interfaces:   
+      - position
+
+    action_monitor_rate: 20.0          
+    allow_partial_joints_goal: false   
+    open_loop_control: true 
+
+leg_1_controller:
+  ros__parameters:
+
+    use_sim_time: false
+
+    joints: 
+      - coxa_leg1_joint 
+      - femur_leg1_joint 
+      - tibia_leg1_joint
+
+    command_interfaces: 
+      - position
+    state_interfaces:   
+      - position
+
+    action_monitor_rate: 20.0          
+    allow_partial_joints_goal: false   
+    open_loop_control: true 
+
+leg_2_controller:
+  ros__parameters:
+
+    use_sim_time: false
+
+    joints: 
+      - coxa_leg2_joint 
+      - femur_leg2_joint 
+      - tibia_leg2_joint
+
+    command_interfaces: 
+      - position
+    state_interfaces:   
+      - position
+
+    action_monitor_rate: 20.0          
+    allow_partial_joints_goal: false   
+    open_loop_control: true 
+
+leg_3_controller:
+  ros__parameters:
+
+    use_sim_time: false
+
+    joints: 
+      - coxa_leg3_joint 
+      - femur_leg3_joint 
+      - tibia_leg3_joint
+
+    command_interfaces: 
+      - position
+    state_interfaces:   
+      - position
+
+    action_monitor_rate: 20.0          
+    allow_partial_joints_goal: false   
+    open_loop_control: true 
+
+leg_4_controller:
+  ros__parameters:
+
+    use_sim_time: false
+
+    joints: 
+      - coxa_leg4_joint 
+      - femur_leg4_joint 
+      - tibia_leg4_joint
+
+    command_interfaces: 
+      - position
+    state_interfaces:   
+      - position
+
+    action_monitor_rate: 20.0          
+    allow_partial_joints_goal: false   
+    open_loop_control: true 
+
+leg_5_controller:
+  ros__parameters:
+
+    use_sim_time: false
+
+    joints: 
+      - coxa_leg5_joint 
+      - femur_leg5_joint 
+      - tibia_leg5_joint
+
+    command_interfaces: 
+      - position
+    state_interfaces:   
+      - position
+
+    action_monitor_rate: 20.0          
+    allow_partial_joints_goal: false   
+    open_loop_control: true 

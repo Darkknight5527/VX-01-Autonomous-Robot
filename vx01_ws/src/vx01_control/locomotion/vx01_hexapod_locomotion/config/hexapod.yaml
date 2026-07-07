@@ -1,0 +1,43 @@
+hexapod_node:
+  ros__parameters:
+    use_sim_time: true
+
+    # Leg link lengths (mm) — measured from URDF/CAD
+    L1: 60.55       # coxa  length
+    L2: 73.84       # femur length
+    L3: 112.16      # tibia length
+
+    # Body geometry
+    body_radius: 105.66     # mm from body centre to coxa pivot
+
+    # Stand-pose joint overrides (bypasses IK — set directly from Gazebo observation)
+    stand_femur_cmd:  -0.95  # rad — femur joint command for stand pose
+    stand_tibia_cmd:   0.85  # rad — tibia joint command for stand pose
+
+    # Home foot position for walking IK 
+    home_reach: 120.0
+    home_z: -150.0
+
+    # Gait parameters
+    step_length:   60.0     # mm  — half-stride cap = 30mm (safe for 120mm reach)
+    step_height:   100.0    # mm  — Bézier lift height (INCREASED for sufficient ground clearance)
+    step_period:    2.0     # s   — full gait cycle (0.75 s per half-phase); slowed for taller lift
+    stand_duration: 3.0     # s   — time to reach stand pose on startup
+    waypoints:      15      # trajectory points per half-cycle (smooth Bézier)
+
+    # Leg coxa mount angles (rad, CCW from +X in body frame)
+    coxa_angles:
+      - -1.5708   # leg 0 — right side
+      - -0.7854   # leg 1 — front-right
+      -  0.7854   # leg 2 — front-left
+      -  1.5708   # leg 3 — left side
+      -  2.3920   # leg 4 — rear-left
+      - -2.3562   # leg 5 — rear-right
+
+    controller_names:
+      - leg_0_controller
+      - leg_1_controller
+      - leg_2_controller
+      - leg_3_controller
+      - leg_4_controller
+      - leg_5_controller

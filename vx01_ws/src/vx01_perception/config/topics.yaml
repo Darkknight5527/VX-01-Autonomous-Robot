@@ -1,0 +1,27 @@
+topics:
+  # Camera inputs
+  camera_color:       /vx01_camera/camera_publisher/rgb0/image
+  camera_depth:       /vx01_camera/camera_publisher/depth0/image_raw
+  camera_depth_info:  /vx01_camera/camera_publisher/depth0/camera_info
+  camera_points:      /vx01_camera/camera_publisher/depth0/points
+  imu:                /imu
+
+  # Mission & mode inputs
+  mission_mode:       /mission_state
+  system_ready:       /system_ready
+  operator_command:   /operator_command
+  battery_state:      /battery_state
+  navigation_status:  /navigation_status
+
+  # Perception outputs
+  victim_detections:  /victim_detections
+  terrain_type:       /terrain_type
+  walkability_score:  /walkability_score
+
+  # Map outputs
+  map:                /map
+  odom:               /odom
+  point_cloud_map:    /point_cloud_map
+
+  # Decision outputs
+  robot_mode:         /robot_mode
